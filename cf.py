@@ -26,7 +26,6 @@ def get_usr_rating(usr, int_list, mov_d):
 
 def get_r_bar(usr, int_list, mov_d):
     '''
-    movie_list: intersection of i and j
     Computes average rating for movies rated by a user.
     '''
     ratings = get_usr_rating(usr, int_list, mov_d)
@@ -113,7 +112,7 @@ def predict_ik(i, mov_test, usr_mov, mov_usr, all_usr_avg):
         # Set to the average of the movie
         r_bar_ik = get_avg_mov_rat(mov_test, mov_usr)
     elif mov_test not in ex_mov:
-        # Set to the
+        # Set to the average of user movie ratings
         r_bak_ik = get_user_avg_mov_rat(i, usr_mov)
     else:
         r_bar_i = get_user_avg_mov_rat(i, usr_mov)
@@ -124,7 +123,6 @@ def predict_ik(i, mov_test, usr_mov, mov_usr, all_usr_avg):
 
     # Check for any NA or abnormal values
     # Set them to the all user average, 1, or 5 where appropriate
-
     if np.isnan(r_bar_ik) == True:
         r_bar_ik = all_usr_avg
 
@@ -148,7 +146,7 @@ if __name__ == "__main__":
     TEST_FILE = args.test[0]
     WRITE_FILE = "predictions.txt"
 
-    ###### READ DATA ######
+    # Read the data
 
     usr_mov = dict()
     mov_usr = dict()
@@ -175,7 +173,7 @@ if __name__ == "__main__":
     print "=-" * 30
     print "Done..."
 
-    ##### PREDICTIONS AND TESTING ######
+    # Predictions and Testing
 
     errors1 = list()
     errors2 = list()
